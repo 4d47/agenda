@@ -9,7 +9,7 @@ Like calendar(1) except ...
 
 - Does not check the current directory for calendarfile
 - Does not preprocess calendarfile with cpp(1);
-- Does not use <tab> as separator;
+- Does not use tab as separator;
 - Does not allow other date formats than ISO8601;
 - Does not jump over weekends
 
