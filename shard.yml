@@ -1,0 +1,12 @@
+name: agenda
+version: 0.1.0
+description: A much more limited reminder service
+crystal: 0.22.0+22
+license: 
+authors:
+  - Mathieu Gagnon <mathieu@gagnon.name>
+targets:
+  agenda:
+    main: src/agenda.cr
+
+
