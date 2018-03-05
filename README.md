@@ -31,3 +31,8 @@ See `agenda --help` for options.
 
 - Relative dates
 
+## See Also
+
+- [When](http://www.lightandmatter.com/when/when.html)
+- [remind](https://www.linuxjournal.com/article/3529)
+
