@@ -1,8 +1,5 @@
 require "option_parser"
 
-BUILD_USER = {{ `whoami`.stringify.chomp }}
-BUILD_DATE = {{ `date "+%Y-%m-%d"`.stringify.chomp }}
-
 today = Time.now.at_beginning_of_day
 advance = 14.days
 backward = 0.days
@@ -21,10 +18,6 @@ OptionParser.parse! do |options|
   end
   options.on("-f FILE", "Use FILE instead of default") do |file|
     calendarfile = file
-  end
-  options.on("-v", "--version", "Display version") do
-    puts "Build on #{BUILD_DATE} by #{BUILD_USER} using #{Crystal::DESCRIPTION}"
-    exit
   end
   options.on("-h", "--help", "Display help") do
     puts options
