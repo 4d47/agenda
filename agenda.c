@@ -30,7 +30,7 @@ main(int argc, char *argv[])
   char *line = NULL;
   size_t linelen = 0;
   ssize_t nread;
-  struct tm day = {};
+  struct tm day = { 0 };
   int thisyear = now()->tm_year;
   time_t date;
   char *n;
@@ -59,7 +59,7 @@ main(int argc, char *argv[])
         execlp(editor, editor, calendarfile, NULL);
         break;
       default:
-        fputs("usage: agenda [-A num] [-B num] [-t date] [-f file] [-e]\n", stderr);
+        fputs("usage: agenda [-e] [-f file] [-t date] [-A num] [-B num]\n", stderr);
         return EXIT_FAILURE;
     }
   }
