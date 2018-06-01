@@ -10,7 +10,7 @@
 .Op Fl e
 .Op Fl A Ar num
 .Op Fl B Ar num
-.Op Fl f Ar calendarfile
+.Op Fl f Ar agendafile
 .Op Fl t Ar yyyy-mm-dd
 .\"
 .Sh DESCRIPTION
@@ -44,9 +44,9 @@ days (forward, future), defaults to 14.
 Print lines from today and previous
 .Ar num
 days (backward, past).
-.It Fl f Ar calendarfile
+.It Fl f Ar agendafile
 Use
-.Ar calendarfile
+.Ar agendafile
 for calendar.
 .It Fl t Ar yyyy-mm-dd
 Act like the specified value is
@@ -54,7 +54,7 @@ Act like the specified value is
 instead of using the current date.
 .El
 .Pp
-Example of a calendar file:
+Example of an agenda file:
 .Bd -unfilled -offset indent
 2018-02-02 appointment with rick
 2018-02-27 13:00 dentist
@@ -67,8 +67,8 @@ Yearless dates reccur every years.
 .Be
 .Sh ENVIRONMENT
 .Bl -tag -width Ds
-.It CALENDAR_FILE
-Path to the calendar file, defaults to ~/CALENDAR
+.It AGENDA_FILE
+Path to the agenda file, defaults to ~/AGENDA
 .El
 .Sh EXIT STATUS
 .Ex

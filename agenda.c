@@ -23,7 +23,7 @@ main(int argc, char *argv[])
 
   char path[PATH_SIZE];
   const char *editor = env("EDITOR", "vi");
-  const char *calendarfile = "/var/CALENDAR";
+  const char *agendafile = "/var/AGENDA";
 
   FILE *stream;
   const char *errstr;
@@ -35,14 +35,14 @@ main(int argc, char *argv[])
   time_t date;
   char *n;
 
-  if (snprintf(path, PATH_SIZE, "%s/%s", getenv("HOME"), "CALENDAR")) {
-    calendarfile = env("CALENDAR_FILE", path);
+  if (snprintf(path, PATH_SIZE, "%s/%s", getenv("HOME"), "AGENDA")) {
+    agendafile = env("AGENDA_FILE", path);
   }
 
   while ((ch = getopt(argc, argv, "A:B:t:f:eh")) != -1) {
     switch (ch) {
       case 't':
-        if (strptime(optarg, "%Y-%m-%d", &day) != NULL) {
+        if (strptime(optarg, "%F", &day) != NULL) {
           today = mktime(&day);
         }
         break;
@@ -53,10 +53,10 @@ main(int argc, char *argv[])
         backward = DAYS(strtonum(optarg, 0, DAYS_MAX, &errstr));
         break;
       case 'f':
-        calendarfile = optarg;
+        agendafile = optarg;
         break;
       case 'e':
-        execlp(editor, editor, calendarfile, NULL);
+        execlp(editor, editor, agendafile, NULL);
         break;
       default:
         fputs("usage: agenda [-e] [-f file] [-t date] [-A num] [-B num]\n", stderr);
@@ -64,7 +64,7 @@ main(int argc, char *argv[])
     }
   }
 
-  stream = fopen(calendarfile, "r");
+  stream = fopen(agendafile, "r");
 
   if (errno != 0) {
     perror("error");
