@@ -25,7 +25,7 @@ is within the next 14 days span.
 If the date omits the year (mm-dd), the current year is used.
 This is useful for anniversary events.
 
-See `agenda --help` for options.
+See `man agenda` for options.
 
 ## Todo
 
