@@ -2,7 +2,7 @@
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/man
 
-CFLAGS = -std=c99 -pedantic -Wall
+CFLAGS = -pedantic -Wall
 CC = cc
 
 
