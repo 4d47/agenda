@@ -41,7 +41,7 @@ main(int argc, char *argv[])
   while ((ch = getopt(argc, argv, "A:B:t:f:eh")) != -1) {
     switch (ch) {
       case 't':
-        if (strptime(optarg, "%F", &day) != NULL) {
+        if (strptime(optarg, "%F", &day)) {
           today = mktime(&day);
         }
         break;
@@ -71,8 +71,9 @@ main(int argc, char *argv[])
   }
 
   while (fgets(line, LINE_LEN, stream) != NULL) {
-    if ((n = strptime(line, "%F", &day)) != NULL) {
-    } else if ((n = strptime(line, "%m-%d", &day)) != NULL) {
+    if ((n = strptime(line, "%F", &day))) {
+      ;
+    } else if ((n = strptime(line, "%m-%d", &day))) {
       day.tm_year = thisyear;
     }
     if (n) {
