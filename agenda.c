@@ -14,14 +14,14 @@
 #define LINE_LEN 1024
 
 const char* env(const char *, const char *);
-time_t midnight();
+time_t midnight(struct tm *);
 struct tm* now();
 
 int
 main(int argc, char *argv[])
 {
   int ch;
-  time_t today = midnight();
+  time_t today = midnight(now());
   int backward = 0;
   int advance = DAYS(14);
 
@@ -44,7 +44,7 @@ main(int argc, char *argv[])
     switch (ch) {
       case 't':
         if (strptime(optarg, "%F", &day)) {
-          today = mktime(&day);
+          today = midnight(&day);
         }
         break;
       case 'A':
@@ -79,8 +79,8 @@ main(int argc, char *argv[])
       day.tm_year = thisyear;
     }
     if (n) {
-      date = mktime(&day);
-      if (today - backward < date && date < today + advance) {
+      date = midnight(&day);
+      if (today - backward <= date && date <= today + advance) {
         fputs(line, stdout);
       }
     }
@@ -100,12 +100,12 @@ env(const char *name, const char *alt)
 
 
 time_t
-midnight()
+midnight(struct tm *t)
 {
-  struct tm *t = now();
   t->tm_hour = 0;
   t->tm_min = 0;
   t->tm_sec = 0;
+  t->tm_isdst = 0;
   return mktime(t);
 }
 
