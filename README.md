@@ -1,6 +1,8 @@
 
 # Agenda
 
+[![Build Status](https://travis-ci.org/4d47/agenda.svg?branch=master)](https://travis-ci.org/4d47/agenda)
+
 A much more limited reminder service
 
 ## Description
