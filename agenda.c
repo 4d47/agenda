@@ -1,3 +1,6 @@
+
+#define _XOPEN_SOURCE
+
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -27,12 +30,11 @@ main(int argc, char *argv[])
   const char *agendafile = "/var/AGENDA";
 
   FILE *stream;
-  const char *errstr;
   char line[LINE_LEN];
   struct tm day = { 0 };
   int thisyear = now()->tm_year;
   time_t date;
-  char *n;
+  int n;
 
   if (snprintf(path, PATH_SIZE, "%s/%s", getenv("HOME"), "AGENDA")) {
     agendafile = env("AGENDA_FILE", path);
@@ -46,10 +48,10 @@ main(int argc, char *argv[])
         }
         break;
       case 'A':
-        advance = DAYS(strtonum(optarg, 0, DAYS_MAX, &errstr));
+        advance = DAYS(atoi(optarg));
         break;
       case 'B':
-        backward = DAYS(strtonum(optarg, 0, DAYS_MAX, &errstr));
+        backward = DAYS(atoi(optarg));
         break;
       case 'f':
         agendafile = optarg;
