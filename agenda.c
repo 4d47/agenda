@@ -8,6 +8,7 @@
 #define DAYS(n) 60*60*24*n
 #define DAYS_MAX INT_MAX/60/60/24
 #define PATH_SIZE 1024
+#define LINE_LEN 1024
 
 const char* env(const char *, const char *);
 time_t midnight();
@@ -27,9 +28,7 @@ main(int argc, char *argv[])
 
   FILE *stream;
   const char *errstr;
-  char *line = NULL;
-  size_t linelen = 0;
-  ssize_t nread;
+  char line[LINE_LEN];
   struct tm day = { 0 };
   int thisyear = now()->tm_year;
   time_t date;
@@ -71,7 +70,7 @@ main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  while ((nread = getline(&line, &linelen, stream)) != -1) {
+  while (fgets(line, LINE_LEN, stream) != NULL) {
     if ((n = strptime(line, "%F", &day)) != NULL) {
     } else if ((n = strptime(line, "%m-%d", &day)) != NULL) {
       day.tm_year = thisyear;
@@ -84,7 +83,6 @@ main(int argc, char *argv[])
     }
   }
 
-  free(line);
   fclose(stream);
   return EXIT_SUCCESS;
 }
