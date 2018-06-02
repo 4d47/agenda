@@ -8,10 +8,10 @@
 .Sh SYNOPSIS
 .Nm 
 .Op Fl e
-.Op Fl A Ar num
-.Op Fl B Ar num
 .Op Fl f Ar agendafile
 .Op Fl t Ar yyyy-mm-dd
+.Op Fl A Ar num
+.Op Fl B Ar num
 .\"
 .Sh DESCRIPTION
 Like
@@ -36,14 +36,7 @@ Does work over multiple years.
 .Pp
 The options are as follows:
 .Bl -tag -width Ds
-.It Fl A Ar num
-Print lines from today and next
-.Ar num
-days (forward, future), defaults to 14.
-.It Fl B Ar num
-Print lines from today and previous
-.Ar num
-days (backward, past).
+.It Fl e Open agenda using EDITOR
 .It Fl f Ar agendafile
 Use
 .Ar agendafile
@@ -52,6 +45,14 @@ for calendar.
 Act like the specified value is
 .Dq today
 instead of using the current date.
+.It Fl A Ar num
+Print lines from today and next
+.Ar num
+days (forward, future), defaults to 14.
+.It Fl B Ar num
+Print lines from today and previous
+.Ar num
+days (backward, past).
 .El
 .Pp
 Example of an agenda file:
