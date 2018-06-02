@@ -1,5 +1,5 @@
 
-#define _XOPEN_SOURCE
+/* #define _XOPEN_SOURCE */
 
 #include <time.h>
 #include <stdlib.h>
@@ -11,7 +11,7 @@
 #define DAYS(n) 60*60*24*n
 #define DAYS_MAX INT_MAX/60/60/24
 #define PATH_SIZE 1024
-#define LINE_LEN 1024
+#define LINE_LEN 2048 + 1
 
 const char* env(const char *, const char *);
 time_t midnight(struct tm *);
@@ -30,11 +30,11 @@ main(int argc, char *argv[])
   const char *agendafile = "/var/AGENDA";
 
   FILE *stream;
-  char line[LINE_LEN];
+  char line[LINE_LEN]; /* *p; */
   struct tm day = { 0 };
   int thisyear = now()->tm_year;
   time_t date;
-  int n;
+  char *n;
 
   if (snprintf(path, PATH_SIZE, "%s/%s", getenv("HOME"), "AGENDA")) {
     agendafile = env("AGENDA_FILE", path);
@@ -82,6 +82,13 @@ main(int argc, char *argv[])
       date = midnight(&day);
       if (today - backward <= date && date <= today + advance) {
         fputs(line, stdout);
+
+        /* if ((p = strchr(line, '\n')) == NULL) { */
+        /*   while ((ch = getw(stream)) != '\n' && ch != EOF) { */
+        /*     // ignore rest of line */
+        /*     ; */
+        /*   } */
+        /* } */
       }
     }
   }

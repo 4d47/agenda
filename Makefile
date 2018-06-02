@@ -2,7 +2,7 @@
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/man
 
-CFLAGS = 
+CFLAGS = -Wall -pedantic-errors
 CC = cc
 
 
