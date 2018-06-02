@@ -1,5 +1,5 @@
 
-#define _XOPEN_SOURCE
+#define _XOPEN_SOURCE 700
 
 #include <time.h>
 #include <stdlib.h>
