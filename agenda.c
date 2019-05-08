@@ -36,6 +36,7 @@ main(int argc, char *argv[])
 	const char*		agendafile = NULL;
 
 	FILE*			stream;
+	FILE*			sortout;
 	char*			line = NULL;
 	size_t			linesize = 0;
 	ssize_t			linelen;
@@ -87,6 +88,7 @@ main(int argc, char *argv[])
 		(void) execlp(editor, editor, agendafile, NULL);
 
 	stream = fopen(agendafile, "r");
+	sortout = popen("sort", "w");
 
 	if (errno > 0)
 		die("error");
@@ -102,10 +104,11 @@ main(int argc, char *argv[])
 		if (s != NULL) {
 			t = midnight(&day);
 			if (t >= today - backward && t <= today + advance)
-				fputs(line, stdout);
+				fputs(line, sortout);
 		}
 	}
 
+	pclose(sortout);
 	fclose(stream);
 	return EXIT_SUCCESS;
 }
