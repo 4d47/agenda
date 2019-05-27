@@ -29,7 +29,7 @@ This is useful for anniversary events.
 
 See `man agenda` for options.
 
-## Todo
+## To Think
 
 - Relative dates
 
