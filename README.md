@@ -20,9 +20,9 @@ Like calendar(1) except ...
     $ agenda
 
 It will read a file named `AGENDA` in user home directory
-(if not overriden with `AGENDA_FILE` env or `-f` option switch)
-and filter lines that starts with an iso date (YYYY-mm-dd) that
-is within the next 14 days span.
+(if not overriden with `AGENDA_FILE` env) and filter lines
+that starts with an iso date (YYYY-mm-dd) that is within
+the next 14 days span.
 
 If the date omits the year (mm-dd), the current year is used.
 This is useful for anniversary events.

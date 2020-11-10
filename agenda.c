@@ -12,7 +12,7 @@
 #define DAYS_MAX INT_MAX/60/60/24
 #define PATH_SIZE 1024
 #define LINE_LEN 2048 + 1
-#define USAGE "usage: %s [-e] [-f file] [-t date] [-A num] [-B num]\n"
+#define USAGE "usage: %s [-e] [-t date] [-A num] [-B num]\n"
 
 static time_t	midnight(struct tm *);
 static void		die(const char *);
@@ -61,9 +61,6 @@ main(int argc, char *argv[])
 		switch (ch) {
 			case 'e':
 				eflag = 1;
-				break;
-			case 'f':
-				agendafile = optarg;
 				break;
 			case 't':
 				if (strptime(optarg, "%F", &day))
